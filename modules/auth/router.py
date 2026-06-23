@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
 
-from auth.schemas import SignUpSchema, LoginSchema, UserResponse
-from auth.services import create_user, login_user
+from modules.auth.schemas import SignUpSchema, LoginSchema, UserResponse
+from modules.auth.services import create_user, login_user
 from core.database import get_db
-from auth.dependencies import get_current_user
-from auth.models import User
+from modules.auth.dependencies import get_current_user
+from modules.auth.models import User
 
 router = APIRouter(
     prefix='/api/auth',

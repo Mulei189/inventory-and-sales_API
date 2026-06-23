@@ -4,7 +4,7 @@ from jose import JWTError
 from fastapi import (Cookie, HTTPException, Depends)
 from sqlalchemy.orm import Session
 from core.database import get_db
-from auth.models import User
+from modules.auth.models import User
 
 from core.security import(SECRET_KEY, ALGORITHM)
 

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from core.database import Base, engine
-from auth.router import router as auth_router
+from modules.auth.router import router as auth_router
 
 app = FastAPI(
     title="StockFlow API",
