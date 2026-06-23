@@ -20,3 +20,8 @@ def root():
     return {
         "message": "StockFlow API Running"
     }
+@app.get('/health')
+def health():
+    return {
+        "status": "healthy!"
+    }
