@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-
 from core.database import Base, engine
 from modules.auth.router import router as auth_router
+from modules.products.router import router as products_router
 
 app = FastAPI(
     title="StockFlow API",
@@ -14,12 +14,16 @@ Base.metadata.create_all(bind=engine)
 
 # Register routers
 app.include_router(auth_router)
+app.include_router(products_router)
 
+# Root endpoint
 @app.get("/")
 def root():
     return {
         "message": "StockFlow API Running"
     }
+
+# Health check endpoint
 @app.get('/health')
 def health():
     return {
