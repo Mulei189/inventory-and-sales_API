@@ -1,9 +1,10 @@
-from sqlalchemy import Column
+from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import Numeric
 from sqlalchemy import DateTime
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from core.database import Base
 
@@ -26,3 +27,11 @@ class Product(Base):
 
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
+    category_id = Column(
+        Integer,
+        ForeignKey("categories.id"),
+        nullable=False
+    )
+    category = relationship(
+        "Category", back_populates="products"
+    )
