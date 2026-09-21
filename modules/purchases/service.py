@@ -6,6 +6,7 @@ from modules.purchases.schema import PurchaseCreate
 from modules.suppliers.models import Supplier
 from modules.products.models import Product
 
+from modules.stock_movements.service import create_stock_movement
 
 def create_purchase(payload: PurchaseCreate, db: Session):
     # 1. Check supplier
@@ -78,6 +79,16 @@ def create_purchase(payload: PurchaseCreate, db: Session):
         db.add(purchase_item)
 
         product.quantity += purchase_item.quantity
+
+        create_stock_movement(
+            db=db,
+            product_id=product.id,
+            movement_type="IN",
+            quantity=purchase_item.quantity,
+            reference_type="PURCHASE",
+            reference_id=purchase.id,
+            notes=f"Stock received from purchase #{purchase.id}"
+        )
 
     # 5. Commit everything together
     db.commit()

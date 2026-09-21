@@ -6,6 +6,9 @@ from modules.categories.router import router as categories_router
 from modules.suppliers.router import router as suppliers_router
 from modules.customers.router import router as customers_router
 from modules.purchases.router import router as purchases_router
+from modules.stock_movements.router import (
+    router as stock_movements_router
+)
 
 app = FastAPI(
     title="StockFlow API",
@@ -23,6 +26,8 @@ app.include_router(categories_router)
 app.include_router(suppliers_router)
 app.include_router(customers_router)
 app.include_router(purchases_router)
+app.include_router(stock_movements_router)
+
 # Root endpoint
 @app.get("/")
 def root():
