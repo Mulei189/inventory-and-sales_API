@@ -10,6 +10,8 @@ class InventoryItemResponse(BaseModel):
     quantity: int
     price: Decimal
     stock_value: Decimal
+    low_stock_threshold: int
+    stock_status: str
 
     class Config:
         from_attributes = True

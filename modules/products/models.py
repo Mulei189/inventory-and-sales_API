@@ -32,6 +32,13 @@ class Product(Base):
         ForeignKey("categories.id"),
         nullable=False
     )
+    
+    low_stock_threshold = Column(
+        Integer,
+        nullable=False,
+        default=5
+    )
+    
     category = relationship(
         "Category", back_populates="products"
     )

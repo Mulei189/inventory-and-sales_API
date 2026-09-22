@@ -12,6 +12,8 @@ from modules.inventory.service import (
     get_inventory,
     get_inventory_item,
     get_inventory_summary,
+    get_low_stock_products,
+    get_out_of_stock_products,
 )
 
 
@@ -40,6 +42,24 @@ def get_inventory_summary_data(
 ):
     return get_inventory_summary(db)
 
+@router.get(
+    "/low-stock",
+    response_model=list[InventoryItemResponse]
+)
+def get_low_stock_inventory(
+    db: Session = Depends(get_db)
+):
+    return get_low_stock_products(db)
+
+
+@router.get(
+    "/out-of-stock",
+    response_model=list[InventoryItemResponse]
+)
+def get_out_of_stock_inventory(
+    db: Session = Depends(get_db)
+):
+    return get_out_of_stock_products(db)
 
 @router.get(
     "/{product_id}",
