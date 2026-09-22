@@ -10,6 +10,7 @@ from modules.stock_movements.router import (
     router as stock_movements_router
 )
 from modules.sales.router import router as sales_router
+from modules.inventory.router import router as inventory_router
 
 app = FastAPI(
     title="StockFlow API",
@@ -29,6 +30,7 @@ app.include_router(customers_router)
 app.include_router(purchases_router)
 app.include_router(stock_movements_router)
 app.include_router(sales_router)
+app.include_router(inventory_router)
 
 # Root endpoint
 @app.get("/")
